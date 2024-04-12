@@ -13,13 +13,10 @@ def sort_by_sector():
     speak_text('Gib einen oder mehrere Sektoren an [A bis D]')
     sector_input = listen_text()
     if sector_input != '*':
-        # Define a mapping dictionary
-        sector_mapping = {'sektor A': 'A', 'sektor B': 'B', 'sektor C': 'C', 'sektor D': 'D'}
+        sector_mapping = {'sektor a': 'A', 'sektor b': 'B', 'sektor c': 'C', 'sektor d': 'D'}
 
-        # Convert input sectors to uppercase and split by comma
         sector_input = sector_input.upper().split(',')
 
-        # Map sector names to their corresponding letters
         sector_input = [sector_mapping.get(sector.strip(), sector) for sector in sector_input]
 
         while not all(sector in sectors for sector in sector_input):
