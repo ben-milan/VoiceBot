@@ -24,13 +24,3 @@ def listen_text():
         text = text.lower()
 
         return text
-
-def main():
-
-
-
-
-    speak_text("Die Auswahlmöglichkeiten sind Platz 4A, 5B und 16C")
-
-if __name__ == "__main__":
-    main()
