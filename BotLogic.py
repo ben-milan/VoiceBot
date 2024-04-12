@@ -15,7 +15,7 @@ def openWebsite():
     pyautogui.hotkey('enter')
     time.sleep(2)
 
-    x, y = pyautogui.locateCenterOnScreen("img/Search.png")
+    x, y = pyautogui.locateCenterOnScreen("img/Search.png", confidence=0.9)
     pyautogui.moveTo(x, y, 1)
     pyautogui.click()
     pyautogui.write("Knie")
