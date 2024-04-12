@@ -23,4 +23,4 @@ for i in range(1, 11):
 print(sitzplan)
 with open("test_data.txt", "w") as file:
     for sitzplatz, daten in sitzplan.items():
-        file.write(f"{sitzplatz}: {daten['Preis']}\n")
+        file.write(f"{sitzplatz}, {daten['Preis']}\n")
