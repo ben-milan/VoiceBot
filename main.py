@@ -1,9 +1,13 @@
+import pyautogui
+
+
 def main():
-    return "Hahaha"
+    pyautogui.hotkey("ctrl", "t")
 
 
 def openWebsite():
-    return "hahaha"
+    pyautogui.hotkey("ctrl", "t")
+
 
 if __name__ == '__main__':
     main()
