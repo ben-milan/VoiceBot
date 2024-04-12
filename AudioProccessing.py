@@ -5,8 +5,12 @@ r = sr.Recognizer()
 
 def speak_text(cmd):
     engine = pyttsx3.init()
-    engine.setProperty('voice', 'german')
-    engine.setProperty('rate', 115)
+    voices = engine.getProperty('voices')
+    for voice in voices:
+        if "german" in voice.languages:
+            engine.setProperty('voice', voice.id)
+            break
+    engine.setProperty("rate", 115)
     engine.say(cmd)
     engine.runAndWait()
 
@@ -14,13 +18,22 @@ def listen_text():
 
     print("Say something: ")
 
-    with sr.Microphone() as source:
+    try:
+        with sr.Microphone() as source:
 
-        r.adjust_for_ambient_noise(source, duration=0.2)
+            r.adjust_for_ambient_noise(source, duration=0.2)
 
-        audio = r.listen(source)
+            audio = r.listen(source)
 
-        text = r.recognize_google(audio, language="de")
-        text = text.lower()
+            text = r.recognize_google(audio, language="de-DE")
+            text = text.lower()
 
-        return text
+            return text
+
+    except sr.UnknownValueError:
+        speak_text("Ein Fehler ist aufgetreten. Bitte Versuchen Sie das erneut.")
+        listen_text()
+
+    except sr.RequestError:
+        speak_text("Ein Fehler ist aufgetreten. Bitte Versuchen Sie das erneut.")
+        listen_text()
