@@ -11,15 +11,24 @@ test_data_path = 'test_data.csv'
 
 def sort_by_sector():
     speak_text('Gib einen oder mehrere Sektoren an [A bis D]')
-    sector_input = input('Gib einen oder mehrere Sektoren an [A-D]\n>>> ')
+    sector_input = listen_text()
     if sector_input != '*':
+        # Define a mapping dictionary
+        sector_mapping = {'sektor A': 'A', 'sektor B': 'B', 'sektor C': 'C', 'sektor D': 'D'}
+
+        # Convert input sectors to uppercase and split by comma
         sector_input = sector_input.upper().split(',')
+
+        # Map sector names to their corresponding letters
+        sector_input = [sector_mapping.get(sector.strip(), sector) for sector in sector_input]
+
         while not all(sector in sectors for sector in sector_input):
             print('ERROR: Einer oder mehrere Sektoren existieren nicht!')
             speak_text('ERROR: Einer oder mehrere Sektoren existieren nicht!')
             sector_input = input('Gib einen oder mehrere Sektoren an [A-D]\n>>> ')
             speak_text('Gib einen oder mehrere Sektoren an [A-D]\n>>> ')
             sector_input = sector_input.upper().split(',')
+            sector_input = [sector_mapping.get(sector.strip(), sector) for sector in sector_input]
 
         df = pd.read_csv(test_data_path)
         filtered_df = df[df['Sektor'].isin(sector_input)]
