@@ -1,0 +1,164 @@
+Index: Clip.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from transformers import CLIPProcessor, CLIPModel\r\n\r\nmodel = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\r\nprocessor = CLIPProcessor.from_pretrained(\"openai/clip-vit-base-patch32\")
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Clip.py b/Clip.py
+--- a/Clip.py	(revision b4a1372499a11b7c94702e7b136bf1c158e73e1f)
++++ b/Clip.py	(date 1712919452517)
+@@ -1,4 +1,29 @@
+-from transformers import CLIPProcessor, CLIPModel
++from selenium import webdriver
++from bs4 import BeautifulSoup
++
++url = "https://www.ticketcorner.ch/en/event/circus-knie-2024-zeughauswiese-17831955/?affiliate=T99"
++
++# Use Selenium to interact with the webpage
++driver = webdriver.Chrome()  # You need to have chromedriver installed and in your PATH
++driver.get(url)
++
++# Wait for the page to fully load (adjust waiting time as needed)
++driver.implicitly_wait(10)  # Wait up to 10 seconds for elements to appear
+ 
+-model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+-processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+\ No newline at end of file
++# Once the page is loaded, get the page source
++html_content = driver.page_source
++
++# Use BeautifulSoup to parse the HTML
++soup = BeautifulSoup(html_content, 'html.parser')
++
++# Now you can extract the data using BeautifulSoup as before
++# Find the appropriate elements and extract the data
++data_elements = soup.find_all('div', class_='your-data-class')  # Update the class according to the HTML structure
++
++# Print or process the data
++for element in data_elements:
++    print(element.text.strip())  # Print or process each element as needed
++
++# Keep the browser window open until manual closure
++input("Press Enter to close the browser window...")
++driver.quit()
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1712915252266)
++++ b/.idea/modules.xml	(date 1712915252266)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/VoiceBot.iml" filepath="$PROJECT_DIR$/.idea/VoiceBot.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1712915252273)
++++ b/.idea/misc.xml	(date 1712915252273)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.9" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	(date 1712915252279)
++++ b/.idea/inspectionProfiles/profiles_settings.xml	(date 1712915252279)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1712915252285)
++++ b/.idea/vcs.xml	(date 1712915252285)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+--- /dev/null	(date 1712915252289)
++++ b/.idea/inspectionProfiles/Project_Default.xml	(date 1712915252289)
+@@ -0,0 +1,19 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
++      <option name="ignoredErrors">
++        <list>
++          <option value="N803" />
++        </list>
++      </option>
++    </inspection_tool>
++    <inspection_tool class="PyShadowingBuiltinsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
++      <option name="ignoredNames">
++        <list>
++          <option value="type" />
++        </list>
++      </option>
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+Index: .idea/VoiceBot.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/VoiceBot.iml b/.idea/VoiceBot.iml
+new file mode 100644
+--- /dev/null	(date 1712915252296)
++++ b/.idea/VoiceBot.iml	(date 1712915252296)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
