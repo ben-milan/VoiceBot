@@ -1,36 +1,24 @@
+import pandas as pd
 import random
-
-sitzplan = {}
-
 
 def generate_status():
     return random.choice(["o", "c"])
 
+columns = ["Sektor", "Reihe", "Platz", "Preis", "Status"]
+sitzplan_df = pd.DataFrame(columns=columns)
 
-for i in range(1, 11):
-    for j in range(1, 21):
-        status = generate_status()
-        sitzplan[f"A{i}-{j}"] = {"Preis": 50, "Status": status}
+for sektor in ["A", "B", "C", "D"]:
+    for reihe in range(1, 11):
+        for platz in range(1, 21):
+            preis = 50 if sektor == "A" else 40 if sektor == "B" else 30 if sektor == "C" else 20
+            status = generate_status()
+            sitzplan_df = sitzplan_df._append({
+                                              "Sektor": sektor,
+                                              "Reihe": reihe,
+                                              "Platz": platz,
+                                              "Preis": preis,
+                                              "Status": status}, ignore_index=True)
 
-
-for i in range(1, 11):
-    for j in range(1, 21):
-        status = generate_status()
-        sitzplan[f"B{i}-{j}"] = {"Preis": 40, "Status": status}
-
-
-for i in range(1, 11):
-    for j in range(1, 21):
-        status = generate_status()
-        sitzplan[f"C{i}-{j}"] = {"Preis": 30, "Status": status}
-
-
-for i in range(1, 11):
-    for j in range(1, 21):
-        status = generate_status()
-        sitzplan[f"D{i}-{j}"] = {"Preis": 20, "Status": status}
+sitzplan_df.to_csv("test_data.csv", index=False)
 
 
-with open("test_data.txt", "w") as file:
-    for sitzplatz, daten in sitzplan.items():
-        file.write(f"{sitzplatz}, {daten['Preis']}, {daten['Status']}\n")
