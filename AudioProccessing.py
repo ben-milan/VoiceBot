@@ -16,15 +16,12 @@ def speak_text(cmd):
 
 def listen_text():
 
-    print("Say something: ")
+    print("Say something amazing >>>")
 
     try:
         with sr.Microphone() as source:
-
             r.adjust_for_ambient_noise(source, duration=0.2)
-
             audio = r.listen(source)
-
             text = r.recognize_google(audio, language="de-DE")
             text = text.lower()
 
@@ -32,8 +29,10 @@ def listen_text():
 
     except sr.UnknownValueError:
         speak_text("Ein Fehler ist aufgetreten. Bitte Versuchen Sie das erneut.")
-        listen_text()
+        text = listen_text()
+        return text
 
     except sr.RequestError:
         speak_text("Ein Fehler ist aufgetreten. Bitte Versuchen Sie das erneut.")
-        listen_text()
+        text = listen_text()
+        return text
