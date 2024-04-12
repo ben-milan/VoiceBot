@@ -3,7 +3,7 @@ def main():
 
 
 def openWebsite():
-    pass
+    return "hahaha"
 
 if __name__ == '__main__':
     main()
