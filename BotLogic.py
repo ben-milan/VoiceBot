@@ -13,10 +13,10 @@ def openWebsite():
     pyautogui.hotkey('ctrl', 't')
     pyautogui.write("https://www.ticketcorner.ch")
     pyautogui.hotkey('enter')
-    time.sleep(2)
+    time.sleep(3)
 
-    x, y = pyautogui.locateCenterOnScreen("img/Search.png", confidence=0.9)
-    pyautogui.moveTo(x, y, 1)
+    x, y = pyautogui.locateCenterOnScreen("img/Search.png", confidence=0.8)
+    pyautogui.moveTo(x, y, 0.5)
     pyautogui.click()
     pyautogui.write("Knie")
 
