@@ -3,7 +3,7 @@ import random
 
 
 def generate_data():
-    return random.choice(["o", "c"])
+    return random.choice(["Verfügbar", "Besetzt"])
 
 
 columns = ["Sektor", "Reihe", "Platz", "Preis", "Status"]
