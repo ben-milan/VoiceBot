@@ -37,6 +37,7 @@ def orderProcesse():
     time.sleep(3)
     pressButton("img/OrderTicket.png")
     time.sleep(3)
+    speak_text("Welches Ticket wollen Sie haben?")
     pressButton("img/continue_button.png")
 
 
