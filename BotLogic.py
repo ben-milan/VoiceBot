@@ -1,4 +1,5 @@
 import pyautogui
+import webbrowser
 import time
 from AudioProccessing import *
 
@@ -18,11 +19,7 @@ def pressButton(url):
 
 def openWebsite():
     time.sleep(2)
-
-    # Simulate pressing Ctrl + T to open a new tab
-    pyautogui.hotkey('ctrl', 't')
-    pyautogui.write("https://www.ticketcorner.ch")
-    pyautogui.hotkey('enter')
+    webbrowser.open("https://www.ticketcorner.ch")
     time.sleep(3)
 
 
