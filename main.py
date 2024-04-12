@@ -1,13 +1,10 @@
-import pyautogui
-
-
+from AudioProccessing import *
+from Clip import *
+from BotLogic import *
 def main():
-    pyautogui.hotkey("ctrl", "t")
 
-
-def openWebsite():
-    pyautogui.hotkey("ctrl", "t")
-
+   print("Hello Main!")
 
 if __name__ == '__main__':
     main()
+
