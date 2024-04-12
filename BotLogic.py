@@ -1,9 +1,19 @@
 import pyautogui
 import time
+from AudioProccessing import *
 
 
 def main():
     openWebsite()
+    searchEvent()
+    time.sleep(3)
+    orderProcesse()
+
+
+def pressButton(url):
+    x, y = pyautogui.locateCenterOnScreen(url, confidence=0.8)
+    pyautogui.moveTo(x, y, 0.5)
+    pyautogui.click()
 
 
 def openWebsite():
@@ -15,10 +25,22 @@ def openWebsite():
     pyautogui.hotkey('enter')
     time.sleep(3)
 
-    x, y = pyautogui.locateCenterOnScreen("img/Search.png", confidence=0.8)
-    pyautogui.moveTo(x, y, 0.5)
-    pyautogui.click()
-    pyautogui.write("Knie")
+
+def searchEvent():
+    speak_text("Welches Event suchen Sie?")
+    searchEntry = listen_text()
+    pressButton("img/Search.png")
+    pyautogui.write(searchEntry)
+    time.sleep(3)
+    pyautogui.hotkey('enter')
+
+
+def orderProcesse():
+    pressButton("img/EventButton.png")
+    time.sleep(3)
+    pressButton("img/OrderTicket.png")
+    time.sleep(3)
+    pressButton("img/continue_button.png")
 
 
 if __name__ == '__main__':
