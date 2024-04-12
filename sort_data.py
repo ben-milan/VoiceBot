@@ -12,6 +12,7 @@ test_data_path = 'test_data.csv'
 def sort_by_sector():
     speak_text('Gib einen oder mehrere Sektoren an [A bis D]')
     sector_input = listen_text()
+    print(sector_input)
     if sector_input != '*':
         sector_mapping = {'sektor a': 'A', 'sektor b': 'B', 'sektor c': 'C', 'sektor d': 'D'}
 
